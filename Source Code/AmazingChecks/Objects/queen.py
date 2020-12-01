@@ -21,11 +21,17 @@ class Queen(Piece) :
         for j in range(self.boardY -1, -1, -1) :
             if board[self.boardX][j] == whiteNum :
                 break
+            elif board[self.boardX][j] != 0 :
+                canMoveList.append((self.boardX, j))
+                break
             else :
                 canMoveList.append((self.boardX, j))
 
         for j in range(self.boardY + 1 , 8) :
             if board[self.boardX][j] == whiteNum :
+                break
+            elif board[self.boardX][j] != 0 :
+                canMoveList.append((self.boardX, j))
                 break
             else :
                 canMoveList.append((self.boardX, j))
@@ -33,11 +39,17 @@ class Queen(Piece) :
         for i in range(self.boardX -1, -1, -1) :
             if board[i][self.boardY] == whiteNum :
                 break
+            elif board[i][self.boardY] != 0 :
+                canMoveList.append((i, self.boardY))
+                break
             else :
                 canMoveList.append((i, self.boardY))
                 
         for i in range(self.boardX + 1, 8) :
             if board[i][self.boardY] == whiteNum :
+                break
+            elif board[i][self.boardY] != 0 :
+                canMoveList.append((i, self.boardY))
                 break
             else :
                 canMoveList.append((i, self.boardY))
@@ -48,7 +60,11 @@ class Queen(Piece) :
         while i < 8 and j >= 0 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i+=1
             j-=1
 
@@ -58,7 +74,11 @@ class Queen(Piece) :
         while i >= 0 and j < 8 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i-=1
             j+=1
 
@@ -68,7 +88,11 @@ class Queen(Piece) :
         while i >= 0 and j >= 0 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i-=1
             j-=1
 
@@ -78,8 +102,15 @@ class Queen(Piece) :
         while i < 8 and j < 8 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i+=1
             j+=1
             
         return canMoveList
+
+    def getPieceValue(self) :
+        return 90 if self.isWhite else -90

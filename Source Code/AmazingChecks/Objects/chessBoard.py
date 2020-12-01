@@ -35,7 +35,7 @@ class ChessBoard(SimpleImage) :
             if not pc.getIsDead() :
                 x = pc.getBoardPos()[0]
                 y = pc.getBoardPos()[1]
-                screen.blit(pc.getSurface(), (x * 90 + 10, y * 90 + 10))
+                screen.blit(pc.getSurface(), (x * 90 + 15, y * 90 + 15))
 
         if self.isSelected :
             screen.blit(self.selectedImage.getSurface(), (self.selectedPos[0] * 90, self.selectedPos[1] * 90))
@@ -59,20 +59,7 @@ class ChessBoard(SimpleImage) :
                 self.blackKing = black
             b = black.getBoardPos()
             self.board[b[0]][b[1]] = 2
-
-    def getPiece(self, boardX, boardY) :
-        for pc in self.pieces :
-            if pc.getBoardPos() == (boardX, boardY) :
-                return pc
-
-        return None
-
-    def setPieceNotation(self, piece) :
-        self.isSelected = True
-        self.selectedPiece = piece
-        self.selectedPieceMovableList = piece.canMove(self.board)
-        self.selectedPos = piece.getBoardPos()
-
+    
     def movePiece(self, boardX, boardY) :
         isFind = False
         for movable in self.selectedPieceMovableList :
@@ -93,5 +80,43 @@ class ChessBoard(SimpleImage) :
             
         return isFind
 
+    def movePieceWithAI(self, selectedPiece, boardX, boardY) :
+        isFind = False
+        for pc in self.pieces :
+            if not pc.getIsDead() and pc.getBoardPos() == selectedPiece.getBoardPos() :
+                isFind = True
+
+                piece = self.getPiece(boardX, boardY) 
+                if piece is not None :
+                    piece.setIsDead(True)
+
+                self.board[pc.getBoardPos()[0]][pc.getBoardPos()[1]] = 0
+                self.board[boardX][boardY] = 1 if pc.getIsWhite() else 2
+                pc.setBoardPos(boardX, boardY)
+                if isinstance(pc, Pawn) :
+                    pc.setOnceMoved()
+                break
+            
+        return isFind
+    
+    def getPieces(self) :
+        return self.pieces
+    
+    def getPiece(self, boardX, boardY) :
+        for pc in self.pieces :
+            if not pc.getIsDead() and pc.getBoardPos() == (boardX, boardY) :
+                return pc
+
+        return None
+
+    def getChessBoard(self) :
+        return self.board
+    
+    def setPieceNotation(self, piece) :
+        self.isSelected = True
+        self.selectedPiece = piece
+        self.selectedPieceMovableList = piece.canMove(self.board)
+        self.selectedPos = piece.getBoardPos()
+        
     def setIsSelected(self, isSelected) :
         self.isSelected = isSelected

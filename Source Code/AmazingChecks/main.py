@@ -4,6 +4,8 @@ from Framework.sceneManager import SceneManager
 from Framework.simpleImage import SimpleImage
 from Scenes.mainScene import MainScene
 from Scenes.gameScene import GameScene
+from Scenes.aiGameScene import AIGameScene
+from Scenes.multiGameScene import MultiGameScene
 
 if __name__ == '__main__' :
     pygame.init()
@@ -18,6 +20,8 @@ if __name__ == '__main__' :
     SceneManager.getInstance().registerGameObjects(screen, clock)
     SceneManager.getInstance().registerScene("MainScene", MainScene(screen,clock))
     SceneManager.getInstance().registerScene("GameScene", GameScene(screen,clock))
+    SceneManager.getInstance().registerScene("AIGameScene", AIGameScene(screen,clock))
+    SceneManager.getInstance().registerScene("MultiGameScene", MultiGameScene(screen,clock))
     SceneManager.getInstance().changeScene("MainScene")
 
     while run:

@@ -6,8 +6,11 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from Framework.scene import Scene
 from Framework.sceneManager import SceneManager
 from Framework.soundManager import SoundManager
-from Framework.animation import Animation
 from Framework.simpleImage import SimpleImage
+
+from Scenes.gameScene import GameScene
+from Scenes.aiGameScene import AIGameScene
+from Scenes.multiGameScene import MultiGameScene
 
 class MainScene(Scene) :
 
@@ -29,8 +32,14 @@ class MainScene(Scene) :
                 return
 
             if event.type == pygame.MOUSEBUTTONDOWN :
-                if self.chessButton.isCollisionRect(pygame.mouse.get_pos()) :
+                if self.normalGameButton.isCollisionRect(pygame.mouse.get_pos()) :
                     SceneManager.getInstance().changeScene("GameScene")
+                    return
+                elif self.aiGameButton.isCollisionRect(pygame.mouse.get_pos()) :
+                    SceneManager.getInstance().changeScene("AIGameScene")
+                    return
+                elif self.multiGameButton.isCollisionRect(pygame.mouse.get_pos()) :
+                    SceneManager.getInstance().changeScene("MultiGameScene")
                     return
 
     def load_resources(self) :
@@ -41,8 +50,22 @@ class MainScene(Scene) :
         self.background.setSize((720,720))
         self.simpleImage_list.append(self.background)
 
-        self.chessButton = SimpleImage("Resources/Images/UI/chess.png")
-        self.chessButton.setCenterMode(True)
-        self.chessButton.setPos((500, 600))
-        self.chessButton.setSize((250, 100))
-        self.simpleImage_list.append(self.chessButton)
+        self.background = SimpleImage("Resources/Images/Background/title.png")
+        self.background.setPos((0,10))
+        self.background.setSize((720,200))
+        self.simpleImage_list.append(self.background)
+
+        self.normalGameButton = SimpleImage("Resources/Images/UI/normalGame.png")
+        self.normalGameButton.setPos((20, 600))
+        self.normalGameButton.setSize((200, 100))
+        self.simpleImage_list.append(self.normalGameButton)
+
+        self.aiGameButton = SimpleImage("Resources/Images/UI/aiGame.png")
+        self.aiGameButton.setPos((260, 600))
+        self.aiGameButton.setSize((200, 100))
+        self.simpleImage_list.append(self.aiGameButton)
+
+        self.multiGameButton = SimpleImage("Resources/Images/UI/multiGame.png")
+        self.multiGameButton.setPos((500, 600))
+        self.multiGameButton.setSize((200, 100))
+        self.simpleImage_list.append(self.multiGameButton)

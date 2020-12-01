@@ -23,3 +23,6 @@ class Knight(Piece) :
                 canMoveList.append((knight[0] + self.boardX, knight[1] + self.boardY))
 
         return canMoveList
+
+    def getPieceValue(self) :
+        return 30 if self.isWhite else -30

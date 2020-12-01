@@ -7,7 +7,6 @@ from Objects.chessBoard import ChessBoard
 from Objects.player import Player
 
 from Framework.sceneManager import Scene, SceneManager
-from Framework.animation import Animation
 from Framework.simpleImage import SimpleImage
 
 class GameScene(Scene) :

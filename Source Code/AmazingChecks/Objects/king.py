@@ -30,3 +30,6 @@ class King(Piece) :
                     canMoveList.append((self.boardX + i, self.boardY + j))
 
         return canMoveList
+
+    def getPieceValue(self) :
+        return 900 if self.isWhite else -900

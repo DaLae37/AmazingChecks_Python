@@ -15,8 +15,6 @@ class Player() :
         self.isGameOver = False
         self.pieces = list()
 
-        self.isAI = False
-
     def inputCheck(self, piece) :
         for pc in self.pieces :
             if pc == piece :
@@ -47,6 +45,3 @@ class Player() :
 
     def getPieces(self) :
         return self.pieces
-
-    def decision(self) :
-        pass

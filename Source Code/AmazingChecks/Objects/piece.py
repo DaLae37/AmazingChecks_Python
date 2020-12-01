@@ -17,12 +17,15 @@ class Piece(SimpleImage) :
     def canMove(self) :
         pass
 
+    def getPieceValue(self) :
+        pass
+
     def setIsDead(self, isDead) :
         self.isDead = isDead
 
     def getIsDead(self) :
         return self.isDead
-
+        
     def setBoardPos(self, boardX, boardY) :
         self.boardX = boardX
         self.boardY = boardY

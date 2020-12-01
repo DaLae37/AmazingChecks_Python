@@ -24,7 +24,11 @@ class Bishop(Piece) :
         while i < 8 and j >= 0 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i+=1
             j-=1
 
@@ -34,7 +38,11 @@ class Bishop(Piece) :
         while i >= 0 and j < 8 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i-=1
             j+=1
 
@@ -44,7 +52,11 @@ class Bishop(Piece) :
         while i >= 0 and j >= 0 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i-=1
             j-=1
 
@@ -54,8 +66,15 @@ class Bishop(Piece) :
         while i < 8 and j < 8 :
             if board[i][j] == whiteNum :
                 break
-            canMoveList.append((i,j))
+            elif board[i][j] != 0 :
+                canMoveList.append((i,j))
+                break
+            else :
+                canMoveList.append((i,j))
             i+=1
             j+=1
-
+            
         return canMoveList
+
+    def getPieceValue(self) :
+        return 30 if self.isWhite else -30

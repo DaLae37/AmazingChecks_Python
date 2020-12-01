@@ -23,17 +23,23 @@ class Pawn(Piece) :
             moveChecker = -1
             whiteChecker = 1
 
+        if self.onceMoved == False and 0 <= self.boardY + moveChecker * 2 < 8 and board[self.boardX][self.boardY + moveChecker * 2] == 0 and board[self.boardX][self.boardY + moveChecker] == 0:
+            canMoveList.append((self.boardX, self.boardY + 2 * moveChecker))
         if 0 <= self.boardY + moveChecker < 8 and board[self.boardX][self.boardY + moveChecker] == 0:
             canMoveList.append((self.boardX, self.boardY + moveChecker))
-        if self.onceMoved == False and 0 <= self.boardY + moveChecker * 2 < 8 and board[self.boardX][self.boardY + moveChecker * 2] == 0:
-            canMoveList.append((self.boardX, self.boardY + 2 * moveChecker))
 
-        if self.boardX + 1 < 8 and board[self.boardX + 1][self.boardY + moveChecker] != 0 and board[self.boardX + 1][self.boardY + moveChecker] != whiteChecker :
+        if self.boardX + 1 < 8 and 0 <= self.boardY + moveChecker < 8 and board[self.boardX + 1][self.boardY + moveChecker] != 0 and board[self.boardX + 1][self.boardY + moveChecker] != whiteChecker :
             canMoveList.append((self.boardX + 1, self.boardY + moveChecker))
-        if self.boardX - 1 >= 0 and board[self.boardX - 1][self.boardY + moveChecker] != 0 and board[self.boardX + 1][self.boardY + moveChecker] != whiteChecker :
+        if self.boardX - 1 >= 0 and 0 <= self.boardY + moveChecker < 8 and board[self.boardX - 1][self.boardY + moveChecker] != 0 and board[self.boardX -1][self.boardY + moveChecker] != whiteChecker :
             canMoveList.append((self.boardX -1, self.boardY + moveChecker))
             
         return canMoveList
-
+    
+    def getPieceValue(self) :
+        return 10 if self.isWhite else -10
+    
     def setOnceMoved(self) :
         self.onceMoved = True
+
+    def getOnceMove(self) :
+        return self.onceMoved
