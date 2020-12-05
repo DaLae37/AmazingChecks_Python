@@ -29,14 +29,13 @@ class AI() :
         self.pieces.append(Knight(self.isWhite, 2, piecesLane))
         self.pieces.append(Knight(self.isWhite, 5, piecesLane))
 
+        piecesLane = 1
         if self.isWhite :
             piecesLane = 6
-        else :
-            piecesLane = 1
 
         for i in range(8) :
             self.pieces.append(Pawn(self.isWhite, i, piecesLane))
-
+            
     def copyPieces(self, pieces) :
         pi = list()
         for pc in pieces :
