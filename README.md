@@ -20,4 +20,4 @@ PyGame 1.9.6
 
 [유튜브](https://youtu.be/fZe9kpEeQ0E)
 
-[보고서]()
+[보고서](https://github.com/DaLae37/AmazingChecks_Python/releases/download/v1.0.0/Report.pdf)
